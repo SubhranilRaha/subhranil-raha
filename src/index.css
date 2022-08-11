@@ -1,13 +1,360 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+
+html {
+	scroll-behavior: smooth;
+}
+/*Variables Dark Theme*/
+
+:root {
+	--first:hsl(274,69%,61%);
+    --alt: hsl(274,57%,53%); 
+    --light: hsl(274,92%,85%); 
+    --title: hsl(250,8%,15%); 
+    --txt: hsl(250,8%,45%); 
+    --txtLight: hsl(250,8%,65%); 
+    --input: hsl(250,70%,96%); 
+    --body: hsl(250,60%,99%); 
+    --container: #fff
+  }
+
+  .dark{
+	--first:hsl(274,30%,8%);
+    --title: hsl(250,8%,95%); 
+    --txt: hsl(250,8%,75%); 
+    --input: hsl(250,29%,16%); 
+    --body: hsl(250,28%,12%); 
+    --container: hsl(250,29%,16%)
+  }
+
+/*Active Link*/
+
+.active-link{
+	color: var(--first-color);
+}
+/*Change Background*/
+
+.scroll-header{
+	box-shadow:0 -1px 4px rgba(0,0,0,.15);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/*Scroll up icon*/
+
+.scrollupicon{
+	
+	position: fixed;
+	right:1rem;	
+	opacity: .8;
+	padding: 0 .3rem;
+	border-radius: .4rem;
+	z-index: 10;
+	transition: .4s;
+	color: #fff;
+	@apply bg-vt-first
+}
+.scrollupicon:hover{
+	@apply bg-vt-alt
+}
+.show-scroll{
+	bottom:5rem;
+}
+
+/*Skills section*/
+
+.arwrot{
+	@apply active:rotate-180
+}
+
+/*About section*/
+
+.abtbgimg{
+	background-image: url('stairway.jpg');
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+ 	
+}
+
+.scaleffectx{
+	transition: .2s
+}
+.scaleffectx:hover{
+	@apply hover:scale-y-125 hover:scale-x-90 hover:text-vt-first
+}
+.scaleffecty{
+	transition: .2s
+}
+.scaleffecty:hover{
+	@apply hover:scale-x-125 hover:scale-y-90 hover:text-vt-first
+}
+.scalelarge{
+	transition: .2s
+}
+
+.scalelarge:hover{
+	transform:scale(1.1);
+}
+
+.button{
+	@apply py-1 px-4 rounded-lg text-vt-body bg-vt-first scalelarge hover:bg-vt-alt
+}
+
+.center {
+	margin: 0;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	}
+.scroll{
+	transition: .2s
+}
+.nav__logo,
+.nav__toggle{
+	@apply text-vt-title font-medium hover:text-vt-first
+}
+.nav__toggle{
+	font-size: 1.1rem;
+	cursor: pointer;
+	@apply hover:text-vt-first
+}
+
+@media screen and (max-width: 767px){
+	.nav__menu{
+		box-shadow: 0 -1px 4px rgba(0,0,0,.15);
+		transition: .3s;
+		@apply fixed -bottom-96 left-0 w-full bg-vt-body pt-8 py-6 pb-16 rounded-t-3xl
+	}
+}
+.nav__item{
+	@apply font-pop
+}
+.nav__list{
+	grid-template-columns: repeat(3,1fr);
+	gap: 2rem;
+}
+.nav__link{
+	@apply flex flex-col items-center text-sm text-vt-title font-medium hover:text-vt-first
+}
+.nav__icon{
+	font-size: 1.2rem;
+}
+.nav__close{
+	position: absolute;
+	right: 1rem;
+	bottom: .5rem;
+	font-size:2rem;
+	@apply cursor-pointer text-vt-first hover:text-vt-alt
+}
+.nav__toggle{
+	font-size:1.5rem;
+	@apply pr-3
+}
+.show-menu{
+	bottom: 0;
+}
+
+
+/* REUSABLE CSS CLASSES */
+
+.section {
+	padding: 2rem 0 4rem;
+  }
+  
+  .section__title {
+	font-size: var(--h1-font-size);
+	color: var(--title-color);
+  }
+  
+  .section__subtitle {
+	display: block;
+	font-size: var(--small-font-size);
+	margin-bottom: var(--mb-3);
+  }
+  
+  .section__title, 
+  .section__subtitle {
+	text-align: center;
+  }
+/* Qualification Span */
+.trans{
+	transform: translate(6px,-7px)
+}
+.transEdu{
+	transform: translate(6px,-7px)
+}
+/* Contact */
+
+.inputs{
+	@apply my-4
+}
+.content{
+	@apply bg-vt-input rounded-md px-2 pt-3 pb-1 my-4
+}
+.label{
+	@apply text-vt-title text-sm font-dm
+}
+.input{
+	@apply w-full bg-vt-input text-vt-txt font-dm rounded-md pt-2 px-2 pb-2 border-0 outline-0
+}
+
+/* For Hamburger Menu */
+
+
+
+/* 
+.menu-wrap{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.toggler{
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	width: 60px;
+	height: 60px;
+	z-index: 3;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.hamburger{
+	position: absolute;
+	top: 0.5rem;
+	left: 0.5rem;
+	width: 60px;
+	height: 60px;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+}
+
+.hamburger>div{
+	position: absolute;
+	width: 60%;
+	height: 3px;
+	border-radius: 1.5px;
+	background-color: white;
+	transition: .4s;
+}
+
+.hamburger>div:before{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	border-radius: 1.5px;
+	background-color: white;
+	top: -10px;
+	left: 0;
+	transition: .4s;
+}
+
+.hamburger>div:after{
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 3px;
+	border-radius: 1.5px;
+	background-color: white;
+	top: 10px;
+	left: 0;
+	transition: .4s;
+}
+
+.toggler:checked + .hamburger>div{
+	transform: rotate(135deg);
+}
+
+.toggler:checked:hover + .hamburger>div{
+	transform: rotate(225deg);
+}
+
+.toggler:checked + .hamburger>div:before, .toggler:checked + .hamburger>div:after{
+	top: 0;
+	transform: rotate(90deg);
+}
+
+.menu{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+	transition: .9s;
+    
+}
+
+.menu > div{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-150%) translateY(-50%);
+    width: 1800px;
+    height: 1600px;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: .9s;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+
+.menu > div > div{
+	max-width: 90vw;
+	max-height: 100vh;
+	opacity: 0;
+	transition: .9s;
+}
+
+.menu > div > div > ul > li{
+	list-style: none;
+}
+
+.menu > div > div > ul > li > a{
+	text-decoration: none;
+	color: white;
+	font-weight: 550;
+	text-transform: uppercase;
+	margin: .5rem;
+	transition: .3s;
+	font-size: 1.2rem;
+	display: inline-block;
+}
+
+.toggler:checked ~ .menu{
+	visibility: visible;
+}
+
+.toggler:checked ~ .menu > div{
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.toggler:checked ~ .menu > div > div{
+	opacity: 1;
+}
+
+.gradient-text {
+    background-image: linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+} */
+
+
+/* Hamburger Menu End*/
+
 }
